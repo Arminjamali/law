@@ -17,40 +17,32 @@
 
 <div class="card">
 <div class="card-body p-0">
-<table class="table table-hover mb-0">
+<div class="table-responsive">
+<table class="table table-hover mb-0 table-mobile-stack">
 <thead class="table-light">
     <tr>
-        <th>تاریخ</th>
-        <th>درس</th>
-        <th>مبحث</th>
-        <th>کل</th>
-        <th class="text-success">صحیح</th>
-        <th class="text-danger">غلط</th>
-        <th class="text-secondary">ممتنع</th>
-        <th>دقت</th>
-        <th>نمره</th>
-        <th>منبع</th>
-        <th></th>
+        <th>تاریخ</th><th>درس</th><th class="hide-mobile">مبحث</th>
+        <th>کل</th><th class="text-success">✓</th><th class="text-danger">✗</th>
+        <th class="text-secondary hide-mobile">ممتنع</th>
+        <th>دقت</th><th class="hide-mobile">نمره</th><th class="hide-mobile">منبع</th><th></th>
     </tr>
 </thead>
 <tbody>
 @forelse($sessions as $s)
 <tr>
-    <td class="text-nowrap">{{ \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($s->date))->format('Y/m/d') }}</td>
-    <td><span class="subject-dot me-1" style="background:{{ $s->subject->color }}"></span>{{ $s->subject->name }}</td>
-    <td class="text-muted small">{{ $s->topic?->name ?? '—' }}</td>
-    <td>{{ $s->total_questions }}</td>
-    <td class="text-success fw-semibold">{{ $s->correct_count }}</td>
-    <td class="text-danger">{{ $s->wrong_count }}</td>
-    <td class="text-secondary">{{ $s->unanswered_count }}</td>
-    <td>
-        <span class="badge {{ $s->accuracy >= 70 ? 'bg-success' : ($s->accuracy >= 50 ? 'bg-warning' : 'bg-danger') }}">
-            {{ $s->accuracy }}%
-        </span>
+    <td data-label="تاریخ" class="text-nowrap">{{ \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($s->date))->format('Y/m/d') }}</td>
+    <td data-label="درس"><span class="subject-dot me-1" style="background:{{ $s->subject->color }}"></span>{{ $s->subject->name }}</td>
+    <td data-label="مبحث" class="text-muted small hide-mobile">{{ $s->topic?->name ?? '—' }}</td>
+    <td data-label="کل">{{ $s->total_questions }}</td>
+    <td data-label="صحیح" class="text-success fw-semibold">{{ $s->correct_count }}</td>
+    <td data-label="غلط" class="text-danger">{{ $s->wrong_count }}</td>
+    <td data-label="ممتنع" class="text-secondary hide-mobile">{{ $s->unanswered_count }}</td>
+    <td data-label="دقت">
+        <span class="badge {{ $s->accuracy >= 70 ? 'bg-success' : ($s->accuracy >= 50 ? 'bg-warning' : 'bg-danger') }}">{{ $s->accuracy }}%</span>
     </td>
-    <td>{{ $s->score }}%</td>
-    <td class="text-muted small">{{ $s->source ?? '—' }}</td>
-    <td class="text-nowrap">
+    <td data-label="نمره" class="hide-mobile">{{ $s->score }}%</td>
+    <td data-label="منبع" class="text-muted small hide-mobile">{{ $s->source ?? '—' }}</td>
+    <td>
         <a href="{{ route('test.edit', $s) }}" class="btn btn-outline-secondary btn-action"><i class="bi bi-pencil"></i></a>
         <form method="POST" action="{{ route('test.destroy', $s) }}" class="d-inline" onsubmit="return confirm('حذف شود؟')">
             @csrf @method('DELETE')
@@ -63,6 +55,7 @@
 @endforelse
 </tbody>
 </table>
+</div>
 </div>
 </div>
 <div class="mt-3">{{ $sessions->links() }}</div>

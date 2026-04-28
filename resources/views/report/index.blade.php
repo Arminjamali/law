@@ -6,37 +6,37 @@
 
 {{-- کارت‌های کلی --}}
 <div class="row g-3 mb-4">
-    <div class="col-6 col-md-2">
+    <div class="col-4 col-md-2">
         <div class="card text-center py-3">
             <div class="fs-3 fw-bold text-primary">{{ number_format($totalStudyMinutes/60, 1) }}</div>
             <small class="text-muted">ساعت مطالعه</small>
         </div>
     </div>
-    <div class="col-6 col-md-2">
+    <div class="col-4 col-md-2">
         <div class="card text-center py-3">
             <div class="fs-3 fw-bold text-info">{{ $studyDays }}</div>
             <small class="text-muted">روز مطالعه</small>
         </div>
     </div>
-    <div class="col-6 col-md-2">
+    <div class="col-4 col-md-2">
         <div class="card text-center py-3">
             <div class="fs-3 fw-bold text-success">{{ number_format($totalTests) }}</div>
             <small class="text-muted">کل سوال تست</small>
         </div>
     </div>
-    <div class="col-6 col-md-2">
+    <div class="col-4 col-md-2">
         <div class="card text-center py-3">
             <div class="fs-3 fw-bold text-success">{{ $totalCorrect }}</div>
             <small class="text-muted">صحیح</small>
         </div>
     </div>
-    <div class="col-6 col-md-2">
+    <div class="col-4 col-md-2">
         <div class="card text-center py-3">
             <div class="fs-3 fw-bold text-danger">{{ $totalWrong }}</div>
             <small class="text-muted">غلط</small>
         </div>
     </div>
-    <div class="col-6 col-md-2">
+    <div class="col-4 col-md-2">
         <div class="card text-center py-3">
             <div class="fs-3 fw-bold {{ $overallAccuracy>=70?'text-success':($overallAccuracy>=50?'text-warning':'text-danger') }}">
                 {{ $overallAccuracy }}%
@@ -48,7 +48,7 @@
 
 <div class="row g-3 mb-4">
     {{-- نمودار ۳۰ روز --}}
-    <div class="col-md-8">
+    <div class="col-12 col-md-8">
         <div class="card">
             <div class="card-header py-2"><i class="bi bi-graph-up me-2"></i>ساعات مطالعه ۳۰ روز اخیر</div>
             <div class="card-body"><canvas id="study30Chart" height="120"></canvas></div>
@@ -56,7 +56,7 @@
     </div>
 
     {{-- نمودار توزیع درسی --}}
-    <div class="col-md-4">
+    <div class="col-12 col-md-4">
         <div class="card">
             <div class="card-header py-2"><i class="bi bi-pie-chart me-2"></i>توزیع مطالعه</div>
             <div class="card-body"><canvas id="subjectPieChart" height="200"></canvas></div>
@@ -66,7 +66,7 @@
 
 <div class="row g-3">
     {{-- دقت تست به تفکیک درس --}}
-    <div class="col-md-6">
+    <div class="col-12 col-md-6">
         <div class="card">
             <div class="card-header py-2"><i class="bi bi-bar-chart me-2"></i>دقت تست به تفکیک درس</div>
             <div class="card-body"><canvas id="accuracyChart" height="200"></canvas></div>
@@ -74,10 +74,11 @@
     </div>
 
     {{-- جدول خلاصه درس‌ها --}}
-    <div class="col-md-6">
+    <div class="col-12 col-md-6">
         <div class="card">
             <div class="card-header py-2"><i class="bi bi-table me-2"></i>خلاصه هر درس</div>
             <div class="card-body p-0">
+            <div class="table-responsive">
             <table class="table table-sm mb-0">
             <thead class="table-light">
                 <tr><th>درس</th><th>مطالعه (h)</th><th>تست</th><th>دقت</th><th>نمره</th></tr>
@@ -106,6 +107,7 @@
             @endforeach
             </tbody>
             </table>
+            </div>{{-- table-responsive --}}
             </div>
         </div>
     </div>

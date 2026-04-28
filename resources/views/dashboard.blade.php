@@ -45,8 +45,8 @@
     <div class="col-md-7">
         <div class="card h-100">
             <div class="card-header py-2"><i class="bi bi-graph-up me-2"></i>مطالعه ۷ روز اخیر</div>
-            <div class="card-body">
-                <canvas id="weekChart" height="160"></canvas>
+            <div class="card-body" style="min-height:180px">
+                <canvas id="weekChart"></canvas>
             </div>
         </div>
     </div>
@@ -146,7 +146,7 @@ new Chart(document.getElementById('weekChart'), {
         }]
     },
     options: {
-        responsive: true, maintainAspectRatio: false,
+        responsive: true, maintainAspectRatio: true,
         plugins: { legend: { display: false } },
         scales: { y: { beginAtZero: true } }
     }
