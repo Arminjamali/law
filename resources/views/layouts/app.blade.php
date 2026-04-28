@@ -58,7 +58,7 @@
         <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
             <i class="bi bi-speedometer2"></i> داشبورد
         </a>
-        <a href="{{ route('plan.show') }}" class="nav-link {{ request()->routeIs('plan.*') ? 'active' : '' }}">
+        <a href="{{ route('plan.show', ['jalali' => str_replace('/', '-', \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::today())->format('Y/m/d'))]) }}" class="nav-link {{ request()->routeIs('plan.*') ? 'active' : '' }}">
             <i class="bi bi-calendar-check"></i> برنامه روزانه
         </a>
         <a href="{{ route('study.create') }}" class="nav-link {{ request()->routeIs('study.create') ? 'active' : '' }}">

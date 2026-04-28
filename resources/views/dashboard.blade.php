@@ -87,7 +87,7 @@
         <div class="card">
             <div class="card-header py-2 d-flex justify-content-between align-items-center">
                 <span><i class="bi bi-calendar-day me-2"></i>برنامه امروز — {{ $todayJalali }}</span>
-                <a href="{{ route('plan.show') }}" class="btn btn-sm btn-outline-primary">مدیریت برنامه</a>
+                <a href="{{ route('plan.show', ['jalali' => str_replace('/', '-', \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::today())->format('Y/m/d'))]) }}" class="btn btn-sm btn-outline-primary">مدیریت برنامه</a>
             </div>
             <div class="card-body">
                 @if($todayPlan && $todayPlan->items->count())
@@ -121,7 +121,7 @@
                     <p class="text-muted mb-0 text-center py-3">
                         <i class="bi bi-calendar-plus fs-2 d-block mb-2"></i>
                         هنوز برنامه‌ای برای امروز ثبت نشده.
-                        <a href="{{ route('plan.show') }}">ثبت برنامه</a>
+                        <a href="{{ route('plan.show', ['jalali' => str_replace('/', '-', \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::today())->format('Y/m/d'))]) }}">ثبت برنامه</a>
                     </p>
                 @endif
             </div>

@@ -5,7 +5,7 @@
 @section('content')
 <div class="d-flex justify-content-between mb-3">
     <h6 class="mb-0">همه برنامه‌های روزانه</h6>
-    <a href="{{ route('plan.show') }}" class="btn btn-primary btn-sm"><i class="bi bi-calendar-plus me-1"></i>برنامه امروز</a>
+    <a href="{{ route('plan.show', ['jalali' => str_replace('/', '-', \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::today())->format('Y/m/d'))]) }}" class="btn btn-primary btn-sm"><i class="bi bi-calendar-plus me-1"></i>برنامه امروز</a>
 </div>
 <div class="card">
 <div class="card-body p-0">
@@ -16,7 +16,8 @@
 <tbody>
 @forelse($plans as $plan)
 @php
-    $jalali = \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($plan->date))->format('Y/m/d');
+    $jalali    = \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($plan->date))->format('Y/m/d');
+    $jalaliUrl = str_replace('/', '-', $jalali);
     $done = $plan->items->where('is_completed',true)->count();
     $total = $plan->items->count();
 @endphp
@@ -30,7 +31,7 @@
             <small>{{ $done }}/{{ $total }}</small>
         </div>
     </td>
-    <td><a href="{{ route('plan.show', ['jalali'=>$jalali]) }}" class="btn btn-sm btn-outline-primary">مشاهده</a></td>
+    <td><a href="{{ route('plan.show', ['jalali'=>$jalaliUrl]) }}" class="btn btn-sm btn-outline-primary">مشاهده</a></td>
 </tr>
 @empty
 <tr><td colspan="5" class="text-center text-muted py-4">هیچ برنامه‌ای ثبت نشده.</td></tr>
