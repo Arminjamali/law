@@ -9,7 +9,7 @@
     <input type="text" id="dateNav" class="form-control jalali-input" style="max-width:160px"
         value="{{ $jalaliDate }}" placeholder="YYYY/MM/DD">
     <button class="btn btn-outline-primary btn-sm" onclick="goToDate()">برو</button>
-    <a href="{{ route('plan.show', ['jalali' => $todayJalali]) }}" class="btn btn-sm btn-outline-secondary">امروز</a>
+    <a href="{{ route('plan.show', ['jalali' => $todayJalaliUrl]) }}" class="btn btn-sm btn-outline-secondary">امروز</a>
 </div>
 
 {{-- ایجاد/ویرایش برنامه روز --}}
@@ -193,7 +193,7 @@
 <script>
 function goToDate() {
     const d = document.getElementById('dateNav').value.trim();
-    if (d) window.location = '/plan/' + encodeURIComponent(d);
+    if (d) window.location = '/plan/' + d.replace(/\//g, '-');
 }
 document.getElementById('dateNav').addEventListener('keydown', e => { if(e.key==='Enter') goToDate(); });
 

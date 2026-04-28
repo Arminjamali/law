@@ -20,7 +20,7 @@ Route::resource('test', TestSessionController::class)->except(['show']);
 
 // برنامه روزانه
 Route::get('plan', [DailyPlanController::class, 'index'])->name('plan.index');
-Route::get('plan/{jalali?}', [DailyPlanController::class, 'show'])->name('plan.show');
+Route::get('plan/{jalali?}', [DailyPlanController::class, 'show'])->name('plan.show')->where('jalali', '[\d\-]+');
 Route::post('plan', [DailyPlanController::class, 'storeOrUpdate'])->name('plan.store');
 Route::post('plan/item', [DailyPlanController::class, 'addItem'])->name('plan.item.store');
 Route::patch('plan/item/{item}/toggle', [DailyPlanController::class, 'toggleItem'])->name('plan.item.toggle');

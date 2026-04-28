@@ -21,18 +21,21 @@ class DailyPlanController extends Controller
 
     public function show(Request $request, $jalali = null)
     {
+        // در URL از خط‌تیره استفاده می‌شه، برای parse باید به اسلش تبدیل شه
         $date = $jalali
-            ? Jalalian::fromFormat('Y/m/d', $jalali)->toCarbon()->toDateString()
+            ? Jalalian::fromFormat('Y/m/d', str_replace('-', '/', $jalali))->toCarbon()->toDateString()
             : Carbon::today()->toDateString();
 
         $plan = DailyPlan::with(['items.subject', 'items.topic', 'items.resource'])
             ->whereDate('date', $date)->first();
 
-        $subjects    = Subject::where('is_active', true)->orderBy('order')->get();
-        $jalaliDate  = Jalalian::fromCarbon(Carbon::parse($date))->format('Y/m/d');
-        $todayJalali = Jalalian::fromCarbon(Carbon::today())->format('Y/m/d');
+        $subjects       = Subject::where('is_active', true)->orderBy('order')->get();
+        $jalaliDate     = Jalalian::fromCarbon(Carbon::parse($date))->format('Y/m/d');
+        $jalaliDateUrl  = str_replace('/', '-', $jalaliDate);
+        $todayJalali    = Jalalian::fromCarbon(Carbon::today())->format('Y/m/d');
+        $todayJalaliUrl = str_replace('/', '-', $todayJalali);
 
-        return view('plan.show', compact('plan', 'date', 'jalaliDate', 'subjects', 'todayJalali'));
+        return view('plan.show', compact('plan', 'date', 'jalaliDate', 'jalaliDateUrl', 'subjects', 'todayJalali', 'todayJalaliUrl'));
     }
 
     public function storeOrUpdate(Request $request)
@@ -50,7 +53,8 @@ class DailyPlanController extends Controller
             ['goal_hours' => $request->goal_hours, 'notes' => $request->notes]
         );
 
-        return redirect()->route('plan.show', ['jalali' => $request->jalali_date])
+        $urlDate = str_replace('/', '-', $request->jalali_date);
+        return redirect()->route('plan.show', ['jalali' => $urlDate])
             ->with('success', 'برنامه روزانه ذخیره شد.');
     }
 
@@ -71,7 +75,7 @@ class DailyPlanController extends Controller
         $data['order'] = DailyPlanItem::where('daily_plan_id', $data['daily_plan_id'])->max('order') + 1;
         DailyPlanItem::create($data);
 
-        $jalali = Jalalian::fromCarbon(Carbon::parse(DailyPlan::find($data['daily_plan_id'])->date))->format('Y/m/d');
+        $jalali = Jalalian::fromCarbon(Carbon::parse(DailyPlan::find($data['daily_plan_id'])->date))->format('Y-m-d');
         return redirect()->route('plan.show', ['jalali' => $jalali])->with('success', 'آیتم اضافه شد.');
     }
 
@@ -85,7 +89,7 @@ class DailyPlanController extends Controller
     {
         $date = $item->dailyPlan->date;
         $item->delete();
-        $jalali = Jalalian::fromCarbon(Carbon::parse($date))->format('Y/m/d');
+        $jalali = Jalalian::fromCarbon(Carbon::parse($date))->format('Y-m-d');
         return redirect()->route('plan.show', ['jalali' => $jalali])->with('success', 'آیتم حذف شد.');
     }
 }
