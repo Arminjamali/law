@@ -42,7 +42,7 @@
 <div class="row g-3">
 
     {{-- نمودار ۷ روز --}}
-    <div class="col-md-7">
+    <div class="col-12 col-md-7">
         <div class="card h-100">
             <div class="card-header py-2"><i class="bi bi-graph-up me-2"></i>مطالعه ۷ روز اخیر</div>
             <div class="card-body" style="min-height:180px">
@@ -52,7 +52,7 @@
     </div>
 
     {{-- پیشرفت هر درس --}}
-    <div class="col-md-5">
+    <div class="col-12 col-md-5">
         <div class="card h-100">
             <div class="card-header py-2"><i class="bi bi-collection me-2"></i>پیشرفت درس‌ها</div>
             <div class="card-body">
@@ -100,7 +100,7 @@
                     </div>
                     <div class="row g-2">
                         @foreach($todayPlan->items as $item)
-                        <div class="col-md-6">
+                        <div class="col-12 col-md-6">
                             <div class="d-flex align-items-center gap-2 p-2 rounded border check-item {{ $item->is_completed ? 'done' : '' }}"
                                  onclick="toggleItem({{ $item->id }}, this)" style="cursor:pointer">
                                 <i class="bi {{ $item->is_completed ? 'bi-check-circle-fill text-success' : 'bi-circle' }} fs-5"></i>

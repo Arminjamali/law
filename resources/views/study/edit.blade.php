@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row justify-content-center">
-<div class="col-md-8">
+<div class="col-12 col-md-8">
 <div class="card">
 <div class="card-header"><i class="bi bi-pencil me-2"></i>ویرایش مطالعه</div>
 <div class="card-body">
@@ -12,7 +12,7 @@
 @csrf @method('PUT')
 
 <div class="row g-3">
-<div class="col-md-6">
+<div class="col-12 col-md-6">
     <label class="form-label fw-semibold">درس</label>
     <select name="subject_id" id="subject_id" class="form-select" required onchange="loadTopics(this.value)">
         @foreach($subjects as $s)
@@ -20,7 +20,7 @@
         @endforeach
     </select>
 </div>
-<div class="col-md-6">
+<div class="col-12 col-md-6">
     <label class="form-label fw-semibold">مبحث</label>
     <select name="topic_id" id="topic_id" class="form-select">
         <option value="">همه مباحث</option>
@@ -29,7 +29,7 @@
         @endforeach
     </select>
 </div>
-<div class="col-md-6">
+<div class="col-12 col-md-6">
     <label class="form-label fw-semibold">منبع</label>
     <select name="resource_id" id="resource_id" class="form-select">
         <option value="">بدون منبع</option>
@@ -38,7 +38,7 @@
         @endforeach
     </select>
 </div>
-<div class="col-md-6">
+<div class="col-12 col-md-6">
     <label class="form-label fw-semibold">نوع مطالعه</label>
     <select name="type" class="form-select" required>
         @foreach(['book'=>'📗 کتاب','pamphlet'=>'📄 جزوه','teaching'=>'🎓 تدریس','video'=>'🎬 ویدیو'] as $val=>$lbl)
@@ -46,19 +46,19 @@
         @endforeach
     </select>
 </div>
-<div class="col-md-4">
+<div class="col-12 col-md-4">
     <label class="form-label fw-semibold">تاریخ (شمسی)</label>
     <input type="text" name="jalali_date" class="form-control jalali-input" value="{{ $jalaliDate }}" required>
 </div>
-<div class="col-md-4">
+<div class="col-12 col-md-4">
     <label class="form-label fw-semibold">شروع</label>
     <input type="time" name="start_time" class="form-control" value="{{ substr($study->start_time,0,5) }}" required>
 </div>
-<div class="col-md-4">
+<div class="col-12 col-md-4">
     <label class="form-label fw-semibold">پایان</label>
     <input type="time" name="end_time" class="form-control" value="{{ substr($study->end_time,0,5) }}" required>
 </div>
-<div class="col-md-4">
+<div class="col-12 col-md-4">
     <label class="form-label fw-semibold">تکرار</label>
     <input type="number" name="repeat_count" class="form-control" value="{{ $study->repeat_count }}" min="1" max="10">
 </div>

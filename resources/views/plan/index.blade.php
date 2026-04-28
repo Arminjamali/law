@@ -9,7 +9,7 @@
 </div>
 <div class="card">
 <div class="card-body p-0">
-<table class="table table-hover mb-0">
+<div class="table-responsive"><table class="table table-hover mb-0">
 <thead class="table-light">
     <tr><th>تاریخ</th><th>هدف</th><th>آیتم‌ها</th><th>پیشرفت</th><th></th></tr>
 </thead>
@@ -37,7 +37,7 @@
 <tr><td colspan="5" class="text-center text-muted py-4">هیچ برنامه‌ای ثبت نشده.</td></tr>
 @endforelse
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 <div class="mt-3">{{ $plans->links() }}</div>

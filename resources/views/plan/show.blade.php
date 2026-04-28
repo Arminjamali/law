@@ -26,17 +26,17 @@
     <form method="POST" action="{{ route('plan.store') }}" class="row g-2 align-items-end">
         @csrf
         <input type="hidden" name="jalali_date" value="{{ $jalaliDate }}">
-        <div class="col-md-3">
+        <div class="col-6 col-md-3">
             <label class="form-label small">هدف مطالعه (ساعت)</label>
             <input type="number" name="goal_hours" class="form-control form-control-sm"
                 value="{{ $plan?->goal_hours ?? '' }}" min="0" max="24" step="0.5" placeholder="۶">
         </div>
-        <div class="col-md-7">
+        <div class="col-12 col-md-7">
             <label class="form-label small">یادداشت روز</label>
             <input type="text" name="notes" class="form-control form-control-sm"
                 value="{{ $plan?->notes ?? '' }}" placeholder="توضیحات، اهداف روز...">
         </div>
-        <div class="col-md-2">
+        <div class="col-12 col-md-2">
             <button type="submit" class="btn btn-primary btn-sm w-100">ذخیره</button>
         </div>
     </form>
@@ -53,7 +53,7 @@
     </button>
 </div>
 <div class="card-body p-0">
-<table class="table table-hover mb-0">
+<div class="table-responsive"><table class="table table-hover mb-0">
 <thead class="table-light">
     <tr>
         <th style="width:40px"></th>
@@ -111,7 +111,7 @@
 <tr><td colspan="8" class="text-center text-muted py-3">هنوز آیتمی اضافه نشده.</td></tr>
 @endforelse
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 @else
@@ -141,13 +141,13 @@
             @endforeach
         </select>
     </div>
-    <div class="col-md-6">
+    <div class="col-12 col-md-6">
         <label class="form-label fw-semibold">مبحث</label>
         <select name="topic_id" id="item_topic" class="form-select">
             <option value="">همه</option>
         </select>
     </div>
-    <div class="col-md-6">
+    <div class="col-12 col-md-6">
         <label class="form-label fw-semibold">نوع فعالیت</label>
         <select name="type" id="item_type" class="form-select" required onchange="toggleStudyType()">
             <option value="study">📖 مطالعه</option>
@@ -163,11 +163,11 @@
             <option value="video">🎬 ویدیو</option>
         </select>
     </div>
-    <div class="col-md-6">
+    <div class="col-12 col-md-6">
         <label class="form-label fw-semibold">شروع</label>
         <input type="time" name="start_time" class="form-control">
     </div>
-    <div class="col-md-6">
+    <div class="col-12 col-md-6">
         <label class="form-label fw-semibold">پایان</label>
         <input type="time" name="end_time" class="form-control">
     </div>

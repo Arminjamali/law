@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row justify-content-center">
-<div class="col-md-8">
+<div class="col-12 col-md-8">
 <div class="card">
 <div class="card-header"><i class="bi bi-plus-circle me-2"></i>ثبت مطالعه جدید</div>
 <div class="card-body">
@@ -13,7 +13,7 @@
 
 <div class="row g-3">
 
-<div class="col-md-6">
+<div class="col-12 col-md-6">
     <label class="form-label fw-semibold">درس <span class="text-danger">*</span></label>
     <select name="subject_id" id="subject_id" class="form-select @error('subject_id') is-invalid @enderror" required onchange="loadTopics(this.value)">
         <option value="">انتخاب درس...</option>
@@ -24,21 +24,21 @@
     @error('subject_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
 </div>
 
-<div class="col-md-6">
+<div class="col-12 col-md-6">
     <label class="form-label fw-semibold">مبحث</label>
     <select name="topic_id" id="topic_id" class="form-select">
         <option value="">همه مباحث</option>
     </select>
 </div>
 
-<div class="col-md-6">
+<div class="col-12 col-md-6">
     <label class="form-label fw-semibold">منبع</label>
     <select name="resource_id" id="resource_id" class="form-select">
         <option value="">بدون منبع</option>
     </select>
 </div>
 
-<div class="col-md-6">
+<div class="col-12 col-md-6">
     <label class="form-label fw-semibold">نوع مطالعه <span class="text-danger">*</span></label>
     <select name="type" class="form-select @error('type') is-invalid @enderror" required>
         <option value="book" {{ old('type')=='book'?'selected':'' }}>📗 کتاب</option>
@@ -48,26 +48,26 @@
     </select>
 </div>
 
-<div class="col-md-4">
+<div class="col-12 col-md-4">
     <label class="form-label fw-semibold">تاریخ (شمسی) <span class="text-danger">*</span></label>
     <input type="text" name="jalali_date" class="form-control jalali-input @error('jalali_date') is-invalid @enderror"
         value="{{ old('jalali_date', $todayJalali) }}" placeholder="مثال: ۱۴۰۴/۰۲/۰۷" required>
     <div class="form-text">فرمت: YYYY/MM/DD</div>
 </div>
 
-<div class="col-md-4">
+<div class="col-12 col-md-4">
     <label class="form-label fw-semibold">ساعت شروع <span class="text-danger">*</span></label>
     <input type="time" name="start_time" class="form-control @error('start_time') is-invalid @enderror"
         value="{{ old('start_time') }}" required>
 </div>
 
-<div class="col-md-4">
+<div class="col-12 col-md-4">
     <label class="form-label fw-semibold">ساعت پایان <span class="text-danger">*</span></label>
     <input type="time" name="end_time" class="form-control @error('end_time') is-invalid @enderror"
         value="{{ old('end_time') }}" required>
 </div>
 
-<div class="col-md-4">
+<div class="col-12 col-md-4">
     <label class="form-label fw-semibold">تعداد تکرار</label>
     <input type="number" name="repeat_count" class="form-control" value="{{ old('repeat_count',1) }}" min="1" max="10">
     <div class="form-text">چند بار این مبحث را خواندی؟</div>

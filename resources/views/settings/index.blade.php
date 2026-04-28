@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row justify-content-center">
-<div class="col-md-6">
+<div class="col-12 col-md-6">
 <div class="card">
 <div class="card-header"><i class="bi bi-gear me-2"></i>تنظیمات کلی</div>
 <div class="card-body">

@@ -6,14 +6,14 @@
 <div class="row g-3">
 
 {{-- مباحث --}}
-<div class="col-md-6">
+<div class="col-12 col-md-6">
 <div class="card">
 <div class="card-header py-2 d-flex justify-content-between align-items-center">
     <span><i class="bi bi-list-nested me-2"></i>مباحث</span>
     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addTopicModal">+ مبحث</button>
 </div>
 <div class="card-body p-0">
-<table class="table table-sm mb-0">
+<div class="table-responsive"><table class="table table-sm mb-0">
 <thead class="table-light"><tr><th>نام</th><th>دشواری</th><th>یادداشت</th><th></th></tr></thead>
 <tbody>
 @forelse($subject->topics as $topic)
@@ -32,20 +32,20 @@
 <tr><td colspan="4" class="text-center text-muted py-3">مبحثی تعریف نشده.</td></tr>
 @endforelse
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 </div>
 
 {{-- منابع --}}
-<div class="col-md-6">
+<div class="col-12 col-md-6">
 <div class="card">
 <div class="card-header py-2 d-flex justify-content-between align-items-center">
     <span><i class="bi bi-journal-bookmark me-2"></i>منابع</span>
     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addResourceModal">+ منبع</button>
 </div>
 <div class="card-body p-0">
-<table class="table table-sm mb-0">
+<div class="table-responsive"><table class="table table-sm mb-0">
 <thead class="table-light"><tr><th>نام</th><th>نوع</th><th>نویسنده</th><th></th></tr></thead>
 <tbody>
 @forelse($subject->resources as $resource)
@@ -64,7 +64,7 @@
 <tr><td colspan="4" class="text-center text-muted py-3">منبعی تعریف نشده.</td></tr>
 @endforelse
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 </div>

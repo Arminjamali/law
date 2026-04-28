@@ -5,7 +5,7 @@
 @section('content')
 <div class="row g-3">
 @foreach($subjects as $subject)
-<div class="col-md-4">
+<div class="col-12 col-md-4">
 <div class="card h-100">
 <div class="card-header py-2 d-flex justify-content-between align-items-center" style="border-right:4px solid {{ $subject->color }}">
     <span class="fw-semibold">{{ $subject->name }}</span>
